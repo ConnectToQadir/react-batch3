@@ -1,5 +1,5 @@
 import './Navbar.css'
-
+import {NavLink} from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -13,10 +13,9 @@ const Navbar = () => {
                     <img src="https://edify.pk/_next/image?url=%2Fimages%2Flogo.webp&w=256&q=75" alt="" />
 
                     <ul>
-                        <li><a style={{color:"red"}} href="#">Home </a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Portfolio</a></li>
+                        <li><NavLink to="/">Home </NavLink></li>
+                        <li><NavLink to="/about">About</NavLink></li>
+                        <li><NavLink to="/contact-us">Contact</NavLink></li>
                     </ul>
 
                 </div>
