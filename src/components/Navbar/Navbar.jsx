@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className='Navbar'>
             <nav>
 
-                <div class="LogoAndLinks">
+                <div className="LogoAndLinks">
 
                     <img src="https://edify.pk/_next/image?url=%2Fimages%2Flogo.webp&w=256&q=75" alt="" />
 
@@ -20,7 +20,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div class="buttons">
+                <div className="buttons">
                     <button>Sign up</button>
                     <button>Log in</button>
                 </div>
