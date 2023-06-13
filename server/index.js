@@ -1,34 +1,44 @@
 const express = require('express')
 const app = express()
+const mongoose = require('mongoose')
 
+
+// middleware
 app.use(express.json())
 
 
 app.get('/',(req,res)=>{
-    console.log(req)
     res.send("Hi")
 })
 
 
+// Student Modal
+const Students = mongoose.model('student', new mongoose.Schema({
+    name:String,
+    age:Number
+}))
 
-app.post('/:id',(req,res)=>{
-
-    var ary = [1,2,3,4,5,6]
 
 
-    if(ary.includes(Number(req.params.id))){
 
-        res.send(`Dynamic Route ${req.params.id}`)
-    }else{
-        
-        res.status(404).send("Page Not Found")
-    }
 
+app.post('/enroll',async (req,res)=>{
+    const student = await Students.create(req.body)
+    res.status(201).json(student)
+})
+
+
+app.get("/getStudents",async(req,res)=>{
+    const students = await Students.find()
+    res.json(students)
 })
 
 
 
 
+
+// Database Connecting
+mongoose.connect('mongodb://127.0.0.1:27017/react').then(()=>{console.log("Connected!")}).catch(()=>{console.log("Not Connected!")})
 
 
 app.listen(4600,()=>{
