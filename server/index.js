@@ -1,40 +1,12 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const StudentRoutes = require('./routes/student')
 
 
 // middleware
 app.use(express.json())
-
-
-app.get('/',(req,res)=>{
-    res.send("Hi")
-})
-
-
-// Student Modal
-const Students = mongoose.model('student', new mongoose.Schema({
-    name:String,
-    age:Number
-}))
-
-
-
-
-
-app.post('/enroll',async (req,res)=>{
-    const student = await Students.create(req.body)
-    res.status(201).json(student)
-})
-
-
-app.get("/getStudents",async(req,res)=>{
-    const students = await Students.find()
-    res.json(students)
-})
-
-
-
+app.use("/api/students",StudentRoutes)
 
 
 // Database Connecting
