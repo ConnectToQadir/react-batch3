@@ -8,7 +8,10 @@ router.post("/enroll", async (req, res) => {
     try {
 
         const newUser = await StudentModel.create(req.body)
-        res.status(201).json(newUser)
+        res.status(201).json({
+            success:true,
+            message:newUser
+        })
 
     } catch (error) {
         
@@ -63,8 +66,18 @@ router.put("/:id",async (req,res)=>{
 // Delete
 router.delete("/:id",async (req,res)=>{
     try {
-        await StudentModel.findByIdAndDelete(req.params.id)
-        res.send("Deleted!")
+        var deletedStd = await StudentModel.findByIdAndDelete(req.params.id)
+        if(!deletedStd){
+            res.json({
+                success:false,
+                message:"Record Not Found!"
+            })
+            return
+        }
+
+        res.json(deletedStd)
+
+
     } catch (error) {
         res.status(500).json({
             success:false,

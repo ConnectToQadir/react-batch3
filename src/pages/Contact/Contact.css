@@ -1,0 +1,10 @@
+form{
+    border:2px solid red;
+    margin:auto;
+    max-width: 600px;
+    padding:20px;
+}
+
+form input{
+    display: block;
+}
