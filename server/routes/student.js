@@ -75,7 +75,10 @@ router.delete("/:id",async (req,res)=>{
             return
         }
 
-        res.json(deletedStd)
+        res.json({
+            success:true,
+            message:"Student Deleted Successfully!"
+        })
 
 
     } catch (error) {

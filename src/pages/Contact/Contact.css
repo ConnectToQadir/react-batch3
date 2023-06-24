@@ -8,3 +8,18 @@ form{
 form input{
     display: block;
 }
+
+table{
+    max-width: 600px;
+    margin: auto;
+}
+
+table .bx-trash{
+    color:red;
+    cursor: pointer;
+}
+
+table .bx-edit{
+    color:blue;
+    cursor: pointer;
+}

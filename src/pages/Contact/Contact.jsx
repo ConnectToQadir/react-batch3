@@ -1,13 +1,11 @@
 import './Contact.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Contact = () => {
 
+  // Enroll Student -------------------------------------------------
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
-
-
-
   const submitForm = async (e) => {
     e.preventDefault()
 
@@ -21,16 +19,41 @@ const Contact = () => {
 
     const jsonRes = await res.json()
 
-    if(jsonRes.success){
+    if (jsonRes.success) {
       alert("User Created Successfully!")
       setName("")
       setAge("")
-    }else{
+    } else {
       alert("Something Went Wrong!")
     }
-
-
   }
+  // -----------------------------------------------------------------
+
+
+
+
+  // Get All Students ------------------------------------------------
+  const [students, setStudents] = useState([])
+  const getStudents = async () => {
+    var res = await fetch('http://localhost:4600/api/students/')
+    res = await res.json()
+    setStudents(res)
+  }
+  useEffect(() => {
+    getStudents()
+  }, [students])
+  // ----------------------------------------------------------------
+
+
+  // Delete Student
+  const deleteStudent = async (id) =>{
+    var res = await fetch(`http://localhost:4600/api/students/${id}`,{
+      method:"DELETE"
+    })
+    res = await res.json()
+    alert(res.message)
+  }
+
 
   return (
     <div>
@@ -43,6 +66,35 @@ const Contact = () => {
         <input type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
         <button>Submit</button>
       </form>
+
+
+      <table border="true" >
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          {
+            students.map((v,i) => {
+              return (
+                <tr key={i} >
+                  <td>{v.name}</td>
+                  <td style={{ textAlign: "center" }} >{v.age}</td>
+                  <td style={{ textAlign: "center" }} ><i onClick={()=>deleteStudent(v._id)} className='bx bx-trash'></i> <i className='bx bx-edit'></i></td>
+                </tr>
+              )
+            })
+          }
+
+
+
+        </tbody>
+      </table>
 
 
     </div>
