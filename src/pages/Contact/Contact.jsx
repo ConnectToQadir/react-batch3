@@ -13,7 +13,7 @@ const Contact = () => {
   const submitForm = async (e) => {
     e.preventDefault()
 
-    var res = await fetch('http://localhost:4600/api/students/enroll', {
+    var res = await fetch('https://react-batch3.vercel.app/api/students/enroll', {
       method: "POST",
       body: JSON.stringify({ name: name, age: age }),
       headers: {
@@ -46,7 +46,7 @@ const Contact = () => {
   }
   const updateStudent =async (e) =>{
     e.preventDefault()
-    var res = await fetch(`http://localhost:4600/api/students/${updatingStudentID}`, {
+    var res = await fetch(`https://react-batch3.vercel.app/api/students/${updatingStudentID}`, {
       method: "PUT",
       body: JSON.stringify({ name: name, age: age }),
       headers: {
@@ -70,7 +70,7 @@ const Contact = () => {
   // Get All Students ------------------------------------------------
   const [students, setStudents] = useState([])
   const getStudents = async () => {
-    var res = await fetch('http://localhost:4600/api/students/')
+    var res = await fetch('https://react-batch3.vercel.app/api/students/')
     res = await res.json()
     setStudents(res)
   }
@@ -83,7 +83,7 @@ const Contact = () => {
 
   // Delete Student
   const deleteStudent = async (id) =>{
-    var res = await fetch(`http://localhost:4600/api/students/${id}`,{
+    var res = await fetch(`https://react-batch3.vercel.app/api/students/${id}`,{
       method:"DELETE"
     })
     res = await res.json()

@@ -15,7 +15,7 @@ app.use("/api/students",StudentRoutes)
 
 
 // Database Connecting
-mongoose.connect('mongodb://127.0.0.1:27017/react').then(()=>{console.log("Connected!")}).catch(()=>{console.log("Not Connected!")})
+mongoose.connect('mongodb+srv://086local:Anas1234@dywstudio.qquto4a.mongodb.net/react?retryWrites=true&w=majority').then(()=>{console.log("Connected!")}).catch(()=>{console.log("Not Connected!")})
 
 
 app.listen(4600,()=>{
