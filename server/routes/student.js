@@ -53,7 +53,10 @@ router.get("/:id",async (req,res)=>{
 router.put("/:id",async (req,res)=>{
     try {
         const updatedUser = await StudentModel.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
-        res.json(updatedUser)
+        res.json({
+            success:true,
+            message:updatedUser
+        })
     } catch (error) {
         res.status(500).json({
             success:false,

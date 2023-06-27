@@ -1,7 +1,11 @@
 import './Contact.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useRef } from 'react'
 
 const Contact = () => {
+
+  const inputRef = useRef()
+
+  
 
   // Enroll Student -------------------------------------------------
   const [name, setName] = useState("")
@@ -27,8 +31,39 @@ const Contact = () => {
       alert("Something Went Wrong!")
     }
   }
-  // -----------------------------------------------------------------
 
+
+  // Edit Student ----------------------------------------------------
+  const [updateMode,setUpdateMode] = useState(false)
+  const [updatingStudentID,setUpdatingStudentID] = useState("")
+  const setEnvToUpdate = (v) =>{
+
+    setUpdateMode(true)
+    setName(v.name)
+    setAge(v.age)
+    setUpdatingStudentID(v._id)
+    inputRef.current.focus()
+  }
+  const updateStudent =async (e) =>{
+    e.preventDefault()
+    var res = await fetch(`http://localhost:4600/api/students/${updatingStudentID}`, {
+      method: "PUT",
+      body: JSON.stringify({ name: name, age: age }),
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+
+    const jsonRes = await res.json()
+
+    if (jsonRes.success) {
+      alert("User Updated Successfully!")
+      setName("")
+      setAge("")
+    } else {
+      alert("Something Went Wrong!")
+    }
+  }
 
 
 
@@ -39,10 +74,11 @@ const Contact = () => {
     res = await res.json()
     setStudents(res)
   }
+
+
   useEffect(() => {
     getStudents()
   }, [students])
-  // ----------------------------------------------------------------
 
 
   // Delete Student
@@ -60,11 +96,11 @@ const Contact = () => {
       <h1>Contact Us</h1>
 
 
-      <form onSubmit={submitForm} >
-        <h2>Enroll Student</h2>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+      <form onSubmit={updateMode ? updateStudent : submitForm} >
+        <h2>{updateMode ? "Edit" : "Enroll"} Student</h2>
+        <input ref={inputRef} type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
         <input type="number" value={age} onChange={(e) => setAge(e.target.value)} placeholder="Age" />
-        <button>Submit</button>
+        <button>{updateMode ? "Update" : "Enroll"}</button>
       </form>
 
 
@@ -85,7 +121,7 @@ const Contact = () => {
                 <tr key={i} >
                   <td>{v.name}</td>
                   <td style={{ textAlign: "center" }} >{v.age}</td>
-                  <td style={{ textAlign: "center" }} ><i onClick={()=>deleteStudent(v._id)} className='bx bx-trash'></i> <i className='bx bx-edit'></i></td>
+                  <td style={{ textAlign: "center" }} ><i onClick={()=>deleteStudent(v._id)} className='bx bx-trash'></i> <i onClick={()=>setEnvToUpdate(v)} className='bx bx-edit'></i></td>
                 </tr>
               )
             })
@@ -95,6 +131,7 @@ const Contact = () => {
 
         </tbody>
       </table>
+
 
 
     </div>
