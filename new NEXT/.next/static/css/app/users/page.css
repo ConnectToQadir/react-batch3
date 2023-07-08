@@ -1,0 +1,29 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[3].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[3].oneOf[12].use[3]!./src/components/Crud/Crud.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+form{
+    border:2px solid red;
+    margin:auto;
+    max-width: 600px;
+    padding:20px;
+    margin-bottom: 40px;
+}
+
+form input{
+    display: block;
+}
+
+table{
+    max-width: 600px;
+    margin: auto;
+}
+
+table .bx-trash{
+    color:red;
+    cursor: pointer;
+}
+
+table .bx-edit{
+    color:blue;
+    cursor: pointer;
+}
