@@ -1,0 +1,110 @@
+.AddProduct{
+    border: 1px solid red;
+}
+
+
+.AddProduct form h2{
+    font-size: calc(16px + 1vw);
+    font-weight: 500;
+}
+
+.AddProduct form h2 span{
+    color: var(--priClr);
+}
+
+
+.AddProduct form{
+    max-width: 700px;
+    margin:20px auto;
+    padding:20px;
+    border-radius: .25rem;
+    border: 1px solid rgba(0, 0, 0, 15%);
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, .1);
+}
+
+.AddProduct form.dark{
+    background-color: gray;
+}
+
+
+.AddProduct form .inputSection{
+    margin-bottom: 10px;
+}
+
+.AddProduct form .inputSection label{
+    display: block;
+    font-size: 15px;
+}
+
+.AddProduct form .inputSection input,.AddProduct form .inputSection select,.AddProduct form .inputSection textarea{
+    width: 100%;
+    padding:5px 8px;
+    border: 1px solid rgba(0, 0, 0, 15%);
+    border-radius: .25rem;
+}
+
+.AddProduct form .inputSection input:focus,.AddProduct form .inputSection select:focus,.AddProduct form .inputSection textarea:focus{
+    border: 1px solid var(--priClr);
+    outline: none;
+}
+
+.AddProduct form .imageInput{
+    border: 1px dashed var(--priClr);
+    padding:20px;
+    border-radius: .25rem;
+    text-align: center;
+    cursor: pointer;
+    margin:30px 0px;
+}
+
+.AddProduct form .imageInput .bx{
+    font-size: 40px;
+}
+
+.AddProduct form .imageInput:hover{
+    background-color: #eee;
+}
+
+
+.AddProduct form .btns input{
+    padding:6px 20px;
+    border-radius: .25rem;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.AddProduct form .btns input:hover{
+    opacity: .9;
+}
+
+.AddProduct form .btns input:first-child{
+    margin-right: 10px;
+    background-color: var(--priClr);
+    border: none;
+    color: #fff;
+}
+
+.AddProduct form .btns input:last-child{
+    border:1px solid var(--priClr);
+    color: var(--priClr);
+}
+
+.AddProduct form .imgBox{
+    position: relative;
+    margin:30px 0px;
+}
+
+.AddProduct form .imgBox .bx{
+    position: absolute;
+    top:15px;
+    right: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.AddProduct form img{
+    width: 100%;
+    border-radius: .25rem;
+}
+
